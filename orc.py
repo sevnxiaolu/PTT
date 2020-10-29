@@ -5,25 +5,22 @@ import time
 
 #获取access_token
 def get_access_token():
-    client_id = 'l2g5LBtjo6rgvgFn5P8FgKT1'
-    client_secret = 'xGdbBGUvGY3vLP9SwGarkfe9FOjrosdo'
-     # client_id 为官网获取的AK， client_secret 为官网获取的SK
-    host = 'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id={}&client_secret={}'.format(
-        client_id, client_secret)
+    client_id = 'API Key'
+    client_secret = 'Secret Key'
+     #client_id 为官网获取的AK， client_secret 为官网获取的SK
+    host = 'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id={}&client_secret={}'.format(client_id, client_secret)
     response = requests.get(host).text
     data = json.loads(response)
     access_token = data['access_token']
     return access_token
-# 获取返回信息
+    #获取返回信息
 
 #获取识别结果
 def get_info(access_token):
 
     request_url = "https://aip.baidubce.com/rest/2.0/solution/v1/form_ocr/request"
     # 二进制方式打开图片文件
-    #f = open('C:/Users/admin/Desktop/1-50.jpg', 'rb')
-    #f = open('C:/Users/admin/Desktop/Inked1-50_LI.jpg', 'rb')
-    f = open('C:/Users/admin/Desktop/2011/2011-441-500.jpg', 'rb')
+    f = open('图片位置', 'rb')
 
     img = base64.b64encode(f.read())#base64编码
     params = {"image": img}
@@ -36,8 +33,6 @@ def get_info(access_token):
     return data_1
 
 # 获取excel
-
-
 def get_excel(requests_id, access_token):
     headers = {'content-type': 'application/x-www-form-urlencoded'}
     pargams = {
@@ -50,7 +45,8 @@ def get_excel(requests_id, access_token):
     info_1 = res.json()['result']['ret_msg']
     excel_url=res.json()['result']['result_data']
     excel_1=requests.get(excel_url).content
-    with open('识别结果2011-441-500.xls','wb+') as f:
+    #识别结果
+    with open('test.xls','wb+') as f:
         f.write(excel_1)
     print(info_1)
 
