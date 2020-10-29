@@ -21,7 +21,6 @@ def get_info(access_token):
     request_url = "https://aip.baidubce.com/rest/2.0/solution/v1/form_ocr/request"
     # 二进制方式打开图片文件
     f = open('图片位置', 'rb')
-
     img = base64.b64encode(f.read())#base64编码
     params = {"image": img}
     request_url = request_url + "?access_token=" + access_token
@@ -45,7 +44,7 @@ def get_excel(requests_id, access_token):
     info_1 = res.json()['result']['ret_msg']
     excel_url=res.json()['result']['result_data']
     excel_1=requests.get(excel_url).content
-    #识别结果
+    #识别输出文件
     with open('test.xls','wb+') as f:
         f.write(excel_1)
     print(info_1)
