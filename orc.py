@@ -17,7 +17,6 @@ def get_access_token():
 
 #获取识别结果
 def get_info(access_token):
-
     request_url = "https://aip.baidubce.com/rest/2.0/solution/v1/form_ocr/request"
     # 二进制方式打开图片文件
     f = open('图片位置', 'rb')
