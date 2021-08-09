@@ -49,7 +49,6 @@ def get_excel(requests_id, access_token):
         f.write(excel_1)
     print(info_1)
 
-
 def main():
     print('正在处理中请稍后')
     access_token = get_access_token()
